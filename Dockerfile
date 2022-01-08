@@ -1,4 +1,4 @@
-FROM php:8.1-apache-buster
+FROM php:7.4-apache-buster
 
 LABEL maintainer="nimdasx@gmail.com"
 LABEL description="php8.1 phalcon5"
