@@ -28,30 +28,35 @@ RUN apt-get -y update \
     && docker-php-ext-install -j$(nproc) pdo_mysql gd \
     && rm -rf /var/lib/apt/lists/*
 
+#phalcon 5 via pecl
+RUN pecl install phalcon-5.0.0
+RUN docker-php-ext-enable phalcon
+
 #psr (phalcon butuh ini)
-WORKDIR /usr/local/src
-RUN git clone --depth=1 https://github.com/jbboehr/php-psr.git
-WORKDIR /usr/local/src/php-psr
-RUN phpize \
-    && ./configure \
-    && make \
-    && make test \
-    && make install
+#WORKDIR /usr/local/src
+#RUN git clone --depth=1 https://github.com/jbboehr/php-psr.git
+#WORKDIR /usr/local/src/php-psr
+#RUN phpize \
+#    && ./configure \
+#    && make \
+#    && make test \
+#    && make install
+
 #RUN echo extension=psr.so | tee -a /usr/local/etc/php/conf.d/psr.ini
-WORKDIR /
-RUN rm -rf /usr/local/src/php-psr
-RUN docker-php-ext-enable psr
+#WORKDIR /
+#RUN rm -rf /usr/local/src/php-psr
+#RUN docker-php-ext-enable psr
 
 #phalcon
-WORKDIR /usr/local/src
-RUN git clone "git://github.com/phalcon/cphalcon.git"
-WORKDIR /usr/local/src/cphalcon
-RUN git checkout 5.0.x
-WORKDIR /usr/local/src/cphalcon/build
-RUN ./install
-WORKDIR /
-RUN rm -rf /usr/local/src/cphalcon
-RUN docker-php-ext-enable phalcon
+#WORKDIR /usr/local/src
+#RUN git clone "git://github.com/phalcon/cphalcon.git"
+#WORKDIR /usr/local/src/cphalcon
+#RUN git checkout 5.0.x
+#WORKDIR /usr/local/src/cphalcon/build
+#RUN ./install
+#WORKDIR /
+#RUN rm -rf /usr/local/src/cphalcon
+#RUN docker-php-ext-enable phalcon
 
 #sqlsrv
 #RUN curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - \
