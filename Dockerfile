@@ -1,7 +1,7 @@
 FROM php:8.1-apache-bullseye
 
 LABEL maintainer="nimdasx@gmail.com"
-LABEL description="php8.1 phalcon5"
+LABEL description="php-8.1 phalcon-5"
 
 #set timezone
 RUN ln -sf /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
@@ -20,44 +20,17 @@ RUN apt-get -y update \
     libfreetype6-dev \
     libjpeg62-turbo-dev \
     libpng-dev \
+    libzip-dev \
     gnupg \
     gnupg2 \
     gnupg1 \
-    git \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install -j$(nproc) pdo_mysql gd \
+    && docker-php-ext-install -j$(nproc) pdo_mysql gd zip mysqli \
     && rm -rf /var/lib/apt/lists/*
 
-#phalcon 5 via pecl, failll
-#RUN pecl install phalcon-5.0.1
-#RUN docker-php-ext-enable phalcon
-
-#psr (phalcon butuh ini)
-#WORKDIR /usr/local/src
-#RUN git clone --depth=1 https://github.com/jbboehr/php-psr.git
-#WORKDIR /usr/local/src/php-psr
-#RUN phpize \
-#    && ./configure \
-#    && make \
-#    && make test \
-#    && make install
-
-#RUN echo extension=psr.so | tee -a /usr/local/etc/php/conf.d/psr.ini
-#WORKDIR /
-#RUN rm -rf /usr/local/src/php-psr
-#RUN docker-php-ext-enable psr
-
-#phalcon
-WORKDIR /usr/local/src
-#RUN git clone "git://github.com/phalcon/cphalcon.git"
-RUN git clone https://github.com/phalcon/cphalcon.git
-WORKDIR /usr/local/src/cphalcon
-RUN git checkout 5.0.x
-WORKDIR /usr/local/src/cphalcon/build
-RUN ./install
-WORKDIR /
-RUN rm -rf /usr/local/src/cphalcon
-#RUN docker-php-ext-enable phalcon
+#phalcon 5 stable
+RUN pecl install phalcon-5.0.1 \
+    && docker-php-ext-enable phalcon
 
 #sqlsrv
 #RUN curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - \
