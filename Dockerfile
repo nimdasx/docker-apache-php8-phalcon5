@@ -1,4 +1,4 @@
-FROM php:8.0-apache-buster
+FROM php:8.1-apache-bullseye
 
 LABEL maintainer="nimdasx@gmail.com"
 LABEL description="php8.1 phalcon5"
@@ -28,9 +28,9 @@ RUN apt-get -y update \
     && docker-php-ext-install -j$(nproc) pdo_mysql gd \
     && rm -rf /var/lib/apt/lists/*
 
-#phalcon 5 via pecl
-RUN pecl install phalcon-5.0.0
-RUN docker-php-ext-enable phalcon
+#phalcon 5 via pecl, failll
+#RUN pecl install phalcon-5.0.1
+#RUN docker-php-ext-enable phalcon
 
 #psr (phalcon butuh ini)
 #WORKDIR /usr/local/src
@@ -48,14 +48,15 @@ RUN docker-php-ext-enable phalcon
 #RUN docker-php-ext-enable psr
 
 #phalcon
-#WORKDIR /usr/local/src
+WORKDIR /usr/local/src
 #RUN git clone "git://github.com/phalcon/cphalcon.git"
-#WORKDIR /usr/local/src/cphalcon
-#RUN git checkout 5.0.x
-#WORKDIR /usr/local/src/cphalcon/build
-#RUN ./install
-#WORKDIR /
-#RUN rm -rf /usr/local/src/cphalcon
+RUN git clone https://github.com/phalcon/cphalcon.git
+WORKDIR /usr/local/src/cphalcon
+RUN git checkout 5.0.x
+WORKDIR /usr/local/src/cphalcon/build
+RUN ./install
+WORKDIR /
+RUN rm -rf /usr/local/src/cphalcon
 #RUN docker-php-ext-enable phalcon
 
 #sqlsrv
