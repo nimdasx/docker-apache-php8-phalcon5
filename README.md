@@ -1,4 +1,4 @@
-# catatan pribadu
+# catatan pribadi
 ````
 docker run -d -p 81:80 -v /Users/sofyan/Dev/php:/var/www/html --name terserah nimdasx/docker-apache-php8-phalcon5  
 docker rm -f terserah 
