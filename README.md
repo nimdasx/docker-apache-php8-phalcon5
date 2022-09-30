@@ -11,6 +11,6 @@ docker push nimdasx/docker-apache-php8-phalcon5
 ````
 # build dan push ke github
 ````
-docker build --tag ghcr.io/nimdasx/docker-apache-php8-phalcon5:main .
-docker push ghcr.io/nimdasx/docker-apache-php8-phalcon5:main
+docker build --tag ghcr.io/nimdasx/docker-apache-php8-phalcon5 .
+docker push ghcr.io/nimdasx/docker-apache-php8-phalcon5
 ````
