@@ -1,7 +1,7 @@
 FROM php:8.1-apache-bullseye
 
 LABEL maintainer="nimdasx@gmail.com"
-LABEL description="php-8.1 phalcon-5"
+LABEL description="apache php-8.1 phalcon-5.0"
 
 #set timezone
 RUN ln -sf /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
