@@ -1,6 +1,6 @@
 # catatan pribadi
 ````
-docker run -d -p 81:80 -v /Users/sofyan/Dev/php:/var/www/html --name terserah nimdasx/docker-apache-php8-phalcon5
+docker run -d -p 81:80 -v /Users/sofyan/Dev/php:/var/www/html --name terserah nimdasx/apache-php8-phalcon5
 docker rm -f terserah
 ````
 # build dan push ke github
