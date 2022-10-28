@@ -6,15 +6,12 @@ docker rm -f terserah
 
 # build dan push ke hub docker 
 ````
-#docker build --tag nimdasx/docker-apache-php8-phalcon5 .   
-#docker push nimdasx/docker-apache-php8-phalcon5  
-
-#amd64
-docker buildx build --push --platform linux/amd64 --tag nimdasx/apache-php8-phalcon5 .
-
-#arm64
-docker buildx build --push --platform linux/arm64 --tag nimdasx/apache-php8-phalcon5 .
- 
+#jalankan ini dulu kalau di linux
+docker run --privileged --rm tonistiigi/binfmt --install all
+#di mac maupun di server linux
+docker buildx create --name sapi --use --bootstrap
+#build and push ke hub.docker.com
+docker buildx build --push --platform linux/amd64,linux/arm64 --tag nimdasx/apache-php8-phalcon5 . 
 ````
 
 # build dan push ke github
