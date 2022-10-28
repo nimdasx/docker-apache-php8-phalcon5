@@ -29,7 +29,7 @@ RUN apt-get -y update \
     && rm -rf /var/lib/apt/lists/*
 
 #phalcon 5 stable
-RUN pecl install phalcon-5.0.3 \
+RUN pecl install phalcon-5.0.5 \
     && docker-php-ext-enable phalcon
 
 #sqlsrv
