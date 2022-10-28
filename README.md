@@ -10,15 +10,19 @@ docker rm -f terserah
 #docker push nimdasx/docker-apache-php8-phalcon5  
 
 #amd64
-docker buildx build --push --platform linux/amd64 --tag nimdasx/apache-php8-phalcon5
+docker buildx build --push --platform linux/amd64 --tag nimdasx/apache-php8-phalcon5 .
 
 #arm64
-docker buildx build --push --platform linux/arm64 --tag nimdasx/apache-php8-phalcon5
+docker buildx build --push --platform linux/arm64 --tag nimdasx/apache-php8-phalcon5 .
  
 ````
 
 # build dan push ke github
 ````
-docker build --tag ghcr.io/nimdasx/docker-apache-php8-phalcon5 .
-docker push ghcr.io/nimdasx/docker-apache-php8-phalcon5
+#docker build --tag ghcr.io/nimdasx/apache-php8-phalcon5 .
+#docker push ghcr.io/nimdasx/apache-php8-phalcon5
+
+#amd64
+docker buildx build --push --platform linux/amd64 --tag ghcr.io/nimdasx/apache-php8-phalcon5 .
+
 ````
