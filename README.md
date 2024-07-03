@@ -1,4 +1,4 @@
-# docker apache php-8.1 phalcon-5.1
+# docker apache php-8 phalcon-5
 ## catatan
 ````
 docker run -d -p 81:80 -v /Users/sofyan/Dev/php:/var/www/html --name dinosaurus nimdasx/apache-php8-phalcon5

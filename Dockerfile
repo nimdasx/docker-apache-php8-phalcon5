@@ -1,7 +1,7 @@
-FROM php:8.1-apache-bullseye
+FROM php:8.2-apache-bullseye
 
 LABEL maintainer="nimdasx@gmail.com"
-LABEL description="apache php-8.1 phalcon-5.1"
+LABEL description="apache php-8.2 phalcon-5.7"
 
 #set timezone
 RUN ln -sf /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
@@ -29,8 +29,8 @@ RUN apt-get -y update \
     && rm -rf /var/lib/apt/lists/*
 
 #phalcon 5 stable
-RUN pecl install phalcon-5.1.3 \
-    && docker-php-ext-enable phalcon
+#RUN pecl install phalcon-5.7.0 \
+#    && docker-php-ext-enable phalcon
 
 #sqlsrv
 #RUN curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - \
