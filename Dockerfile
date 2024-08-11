@@ -24,7 +24,6 @@ RUN apt-get -y update \
     gnupg \
     gnupg2 \
     gnupg1 \
-#    libapache2-mod-headers \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install -j$(nproc) pdo_mysql gd zip mysqli \
     && rm -rf /var/lib/apt/lists/*
@@ -44,7 +43,7 @@ RUN pecl install phalcon-5.8.0 \
 #     msodbcsql17 \
 #     mssql-tools \
 #     unixodbc-dev \
-#     libgssapi-krb5-2 \
+#      libgssapi-krb5-2 \
 #     && rm -rf /var/lib/apt/lists/* \
 #     && pecl install sqlsrv pdo_sqlsrv \
 #     && docker-php-ext-enable sqlsrv pdo_sqlsrv \

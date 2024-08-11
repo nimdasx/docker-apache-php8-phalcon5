@@ -19,4 +19,7 @@ docker buildx build --platform linux/amd64,linux/arm64 --tag ghcr.io/nimdasx/apa
 
 # build dan push ke docker hub
 docker buildx build --platform linux/amd64,linux/arm64 --tag nimdasx/apache-php8-phalcon5 --push .
+
+# jika error pas buildx, jalankan ini
+docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
 ````
