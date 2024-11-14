@@ -35,6 +35,10 @@ RUN a2enmod headers
 RUN pecl install phalcon-5.8.0 \
     && docker-php-ext-enable phalcon
 
+# Install redis extension
+RUN pecl install redis \
+    && docker-php-ext-enable redis
+    
 #sqlsrv
 # RUN curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - \
 #     && curl https://packages.microsoft.com/config/debian/10/prod.list > /etc/apt/sources.list.d/mssql-release.list \
