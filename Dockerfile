@@ -39,6 +39,9 @@ RUN pecl install phalcon-5.8.0 \
 RUN pecl install redis \
     && docker-php-ext-enable redis
     
+#enable remoteip
+RUN a2enmod remoteip
+
 #sqlsrv
 # RUN curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - \
 #     && curl https://packages.microsoft.com/config/debian/10/prod.list > /etc/apt/sources.list.d/mssql-release.list \
