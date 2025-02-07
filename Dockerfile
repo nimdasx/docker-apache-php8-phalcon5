@@ -29,7 +29,7 @@ RUN apt-get -y update \
     && rm -rf /var/lib/apt/lists/*
 
 #nable a2enmod headers
-RUN a2enmod headers
+#RUN a2enmod headers
 
 #phalcon 5 stable
 RUN pecl install phalcon-5.8.0 \
@@ -39,8 +39,8 @@ RUN pecl install phalcon-5.8.0 \
 RUN pecl install redis \
     && docker-php-ext-enable redis
     
-#enable remoteip
-RUN a2enmod remoteip
+#enable remoteip headers
+RUN a2enmod remoteip headers
 
 COPY 000-default.conf /etc/apache2/sites-enabled/000-default.conf
 
