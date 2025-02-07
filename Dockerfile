@@ -1,7 +1,7 @@
 FROM php:8.3-apache-bullseye
 
 LABEL maintainer="nimdasx@gmail.com"
-LABEL description="apache php-8.3 phalcon-5.7"
+LABEL description="apache php-8.3 phalcon-5.8"
 
 #set timezone
 RUN ln -sf /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
@@ -9,8 +9,11 @@ RUN ln -sf /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
 #config php
 COPY php-nimdasx.ini /usr/local/etc/php/conf.d/php-nimdasx.ini
 
+#config apache
+COPY 000-default.conf /etc/apache2/sites-enabled/000-default.conf
+
 #apache
-RUN a2enmod rewrite \
+RUN a2enmod rewrite remoteip headers \
     && sed -i '/<Directory \/var\/www\/>/,/<\/Directory>/ s/-Indexes/+Indexes/' /etc/apache2/conf-enabled/docker-php.conf
 
 #dependensi
@@ -24,25 +27,18 @@ RUN apt-get -y update \
     gnupg \
     gnupg2 \
     gnupg1 \
+    libpq-dev \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install -j$(nproc) pdo_mysql gd zip mysqli \
+    && docker-php-ext-install -j$(nproc) pdo_mysql pdo_pgsql gd zip mysqli \
     && rm -rf /var/lib/apt/lists/*
 
-#nable a2enmod headers
-#RUN a2enmod headers
-
-#phalcon 5 stable
+#phalcon
 RUN pecl install phalcon-5.8.0 \
     && docker-php-ext-enable phalcon
 
-# Install redis extension
+#redis
 RUN pecl install redis \
     && docker-php-ext-enable redis
-    
-#enable remoteip headers
-RUN a2enmod remoteip headers
-
-COPY 000-default.conf /etc/apache2/sites-enabled/000-default.conf
 
 #sqlsrv
 # RUN curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - \
