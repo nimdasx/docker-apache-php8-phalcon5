@@ -1,4 +1,4 @@
-FROM php:8.3-apache-bookworm
+FROM php:8.3-apache-bullseye
 
 LABEL maintainer="nimdasx@gmail.com"
 LABEL description="apache php-8.3 phalcon-5.8"
@@ -53,6 +53,3 @@ RUN pecl install phalcon-5.8.0 \
 #     && pecl install sqlsrv pdo_sqlsrv \
 #     && docker-php-ext-enable sqlsrv pdo_sqlsrv \
 #     && sed -i 's/TLSv1.2/TLSv1.0/g' /etc/ssl/openssl.cnf
-
-#catatan
-#phalcon 5.8 maksimal di php 8.3 belum support php 8.4
