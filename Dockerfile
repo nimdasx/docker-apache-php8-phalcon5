@@ -1,4 +1,4 @@
-FROM php:8.3-apache-bullseye
+FROM php:8.3-apache-bookworm
 
 LABEL maintainer="nimdasx@gmail.com"
 LABEL description="apache php-8.3 phalcon-5.8"
@@ -32,13 +32,13 @@ RUN apt-get -y update \
     && docker-php-ext-install -j$(nproc) pdo_mysql pdo_pgsql gd zip mysqli \
     && rm -rf /var/lib/apt/lists/*
 
-#phalcon
-RUN pecl install phalcon-5.8.0 \
-    && docker-php-ext-enable phalcon
-
 #redis
 RUN pecl install redis \
     && docker-php-ext-enable redis
+
+#phalcon
+RUN pecl install phalcon-5.8.0 \
+    && docker-php-ext-enable phalcon
 
 #sqlsrv
 # RUN curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - \
@@ -53,3 +53,6 @@ RUN pecl install redis \
 #     && pecl install sqlsrv pdo_sqlsrv \
 #     && docker-php-ext-enable sqlsrv pdo_sqlsrv \
 #     && sed -i 's/TLSv1.2/TLSv1.0/g' /etc/ssl/openssl.cnf
+
+#catatan
+#phalcon 5.8 maksimal di php 8.3 belum support php 8.4
