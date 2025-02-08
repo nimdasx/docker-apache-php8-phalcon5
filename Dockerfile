@@ -1,4 +1,4 @@
-FROM php:8.3-apache-bullseye
+FROM php:8.3-apache-bookworm
 
 LABEL maintainer="nimdasx@gmail.com" \
     description="apache php-8.3 phalcon-5.8"

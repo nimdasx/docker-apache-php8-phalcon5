@@ -2,8 +2,8 @@
 
 ## catatan
 - phalcon 5.8 maksimal di php 8.3
-- bookworm : gagal arm64, berhasil amd64
-- bullseye : berhasil arm64, amd64
+- bookworm : berhasil arm64, berhasil amd64
+- bullseye : berhasil arm64, berhasil amd64
 
 ## command
 ````
