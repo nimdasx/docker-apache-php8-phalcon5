@@ -15,11 +15,6 @@ RUN ln -sf /usr/share/zoneinfo/Asia/Jakarta /etc/localtime \
     && sed -i '/<Directory \/var\/www\/>/,/<\/Directory>/ s/-Indexes/+Indexes/' /etc/apache2/conf-enabled/docker-php.conf
 
 #dependensi
-# tryting to remove 
-# unzip \
-# gnupg \
-# gnupg2 \
-# gnupg1 \
 RUN apt-get -y update \
     && apt-get install -y \
     libfreetype6-dev \
